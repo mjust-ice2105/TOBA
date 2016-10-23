@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	 version="3.1">
+
+
+    <!-- Servlet Mapping config-->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>toba.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewCustomerServlet</servlet-name>
+        <servlet-class>toba.servlet.NewCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TransactionServlet</servlet-name>
+        <servlet-class>toba.servlet.TransactionServlet</servlet-class>
+    </servlet>
+    
+    
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/loginservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewCustomerServlet</servlet-name>
+        <url-pattern>/newcustomerservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TransactionServlet</servlet-name>
+        <url-pattern>/transactionservlet</url-pattern>
+    </servlet-mapping>
+    
+    
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    
+    
+    
+    
+    <!-- Error Handling Config-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error_404.jsp</location>
+    </error-page>
+    
+    
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/Error_java.jsp</location>
+    </error-page>
+    
+    
+    
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    
+    
+    
+</web-app>
