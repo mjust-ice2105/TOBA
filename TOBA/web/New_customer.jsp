@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+<%-- 
+    Document   : New_customer
+    Created on : Nov 5, 2016, 3:54:20 PM
+    Author     : mpjustice
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="include/header.html" />
 
 
-<html>
-    <head>
-        <title>Titan Online Banking</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    
-    <body>
         <h1>Titan Online Banking</h1>
         
         <form action="newcustomerservlet" method="POST">
@@ -44,7 +44,7 @@
             <input type="submit" name="newLogin" value="register" />
         
             </form>
+
         
         
-    </body>
-</html>
+<c:import url="include/footer.jsp" />

@@ -5,16 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="include/header.html" />
 
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Titan Online Banking</title>
-    </head>
-    
-    <body>
         <h1>Titan Online Banking</h1>
         
         <h1>Java Error</h1>
@@ -26,5 +20,5 @@
         <p>Message: {pageContext.exception.message}</p>
         
         
-    </body>
-</html>
+
+        <c:import url="include/footer.jsp" />

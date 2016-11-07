@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         
         // Default URL string.
-        String url = "/Login.html";
+        String url = "/Login.jsp";
         
         
         //Get and check user input.
@@ -38,16 +38,16 @@ public class LoginServlet extends HttpServlet {
 
                     
                 // Send to account_activity if correct UN/PW.
-                url = "/Account_activity.html";
+                url = "/Account_activity.jsp";
             } else {
                     
                 // Send back to login page.
-                url = "/Login_failure.html";
+                url = "/Login_failure.jsp";
             }
         } else {
                 
             // Send back to login page.
-            url = "/Login_failure.html";
+            url = "/Login_failure.jsp";
         }
         
         // Forward to correct request.
