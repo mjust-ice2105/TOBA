@@ -19,6 +19,10 @@
         <servlet-name>TransactionServlet</servlet-name>
         <servlet-class>toba.servlet.TransactionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PasswordResetServlet</servlet-name>
+        <servlet-class>toba.servlet.PasswordResetServlet</servlet-class>
+    </servlet>
     
     
     <servlet-mapping>
@@ -33,9 +37,14 @@
         <servlet-name>TransactionServlet</servlet-name>
         <url-pattern>/transactionservlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PasswordResetServlet</servlet-name>
+        <url-pattern>/passwordresetservlet</url-pattern>
+    </servlet-mapping>
     
     
     <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
     

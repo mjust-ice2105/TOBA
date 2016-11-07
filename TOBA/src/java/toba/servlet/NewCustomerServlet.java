@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,7 +26,7 @@ public class NewCustomerServlet extends HttpServlet {
             throws ServletException, IOException {
         
         // Default URL string.
-        String url = "/New_customer.html";
+        String url = "/New_customer.jsp";
         
             
         //Get user input data and save to variables.
@@ -47,7 +48,7 @@ public class NewCustomerServlet extends HttpServlet {
             
             // Print out message to HTML if one or more variables are blank.
             response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
+            PrintWriter out = response.getWriter(); 
             try {
                 out.println("<h1>Titan Online Banking</h1>");
                 out.println("<h3>Please fill out all of the form fields</h3>");
@@ -59,8 +60,26 @@ public class NewCustomerServlet extends HttpServlet {
             }
         }
         else {
+            
+            //
+            HttpSession session = request.getSession();
+            
+            // Create Username and Temp Password for new user
+            // Pass to User bean as well 
+            String userName = lastName + zipCode;
+            String password = "welcome1";
+            
+            
+            // Create User bean and pass the attributes.
+            User user = new User(firstName, lastName, phone, address, city, state, 
+            zipCode, email, userName, password);
+            
+            
+            // Create a session and add the user object to that session scope.
+            session.setAttribute("user", user);
+            
             // Set URL to success page if all variables are filled out.
-            url = "/Success.html";
+            url = "/Success.jsp";
         }
         
         // Forward to correct request.
@@ -68,8 +87,8 @@ public class NewCustomerServlet extends HttpServlet {
                 .getRequestDispatcher(url)
                 .forward(request, response);
     }
-
-
+    
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
