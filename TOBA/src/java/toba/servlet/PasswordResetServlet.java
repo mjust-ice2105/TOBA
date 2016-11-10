@@ -76,8 +76,6 @@ public class PasswordResetServlet extends HttpServlet {
             // Get User object from session if one is there.
             HttpSession session = request.getSession();
             
-            session.getAttribute("user");
-            
             // Create User Object that will be stored back in Session.
             User thisUser = (User) session.getAttribute("user");
             

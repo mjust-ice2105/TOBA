@@ -52,7 +52,7 @@ public class NewCustomerServlet extends HttpServlet {
             try {
                 out.println("<h1>Titan Online Banking</h1>");
                 out.println("<h3>Please fill out all of the form fields</h3>");
-                out.println("<a href=\"New_customer.html\">Go Back</a>");
+                out.println("<a href=\"New_customer.jsp\">Go Back</a>");
                 
             }
             finally {
