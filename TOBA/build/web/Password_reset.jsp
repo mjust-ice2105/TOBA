@@ -20,9 +20,9 @@
              
              
              <label>Password :</label>
-             <input type="text" name="password" value=${sessionScope.user.password} /><br><br>
+             <input type="password" name="password" value=${user.password} /><br><br>
              <label>Confirm Password :</label>
-             <input type="text" name="password2" value=${sessionScope.user.password}  /><br><br>
+             <input type="password" name="password2" value=${user.password}  /><br><br>
              
              
             

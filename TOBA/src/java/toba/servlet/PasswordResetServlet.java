@@ -79,34 +79,15 @@ public class PasswordResetServlet extends HttpServlet {
             // Create User Object that will be stored back in Session.
             User thisUser = (User) session.getAttribute("user");
             
-            //Object test = request.getSession();
-            
             // Set the properties to the User object
             
             thisUser.setPassword(password);
             
-            
-            
-            /*
-            thisUser.setFirstName(request.getParameter("firstName"));
-            thisUser.setLastName(request.getParameter("lastName"));
-            thisUser.setPhone(request.getParameter("phone"));
-            thisUser.setAddress(request.getParameter("address"));
-            thisUser.setCity(request.getParameter("city"));
-            thisUser.setState(request.getParameter("state"));
-            thisUser.setZipCode(request.getParameter("zipCode"));
-            thisUser.setEmail(request.getParameter("email"));
-            thisUser.setUserName(request.getParameter("userName"));
-            thisUser.setPassword(password);*/
-            
-            
-            
+            // Update User Object password attribute after change
+            UserDB.update(thisUser);
             
             // set the new User object to the sessionScope.
             session.setAttribute("user", thisUser);
-
-            
-            
             
             // Redirect user to Account Activity.
             url = "/Account_activity.jsp";

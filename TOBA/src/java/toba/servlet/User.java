@@ -1,6 +1,10 @@
 package toba.servlet;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
@@ -10,9 +14,13 @@ import java.io.Serializable;
  * 
  */
 
+@Entity
 public class User implements Serializable {
     
     // Variables
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long userId;
     private String firstName;
     private String lastName;
     private String phone;
@@ -25,6 +33,7 @@ public class User implements Serializable {
     private String password;
     
     
+    // CONSTRUCTORS
     // No Arg constructor
     public User() {
         
@@ -40,7 +49,6 @@ public class User implements Serializable {
         userName = "";
         password = "";
     }
-    
     
     // Constructor for all Arg's
     public User(String firstName, String lastName, String phone, String address, 
@@ -139,6 +147,22 @@ public class User implements Serializable {
     } 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "userId=" + userId + ", firstName=" + firstName + ", lastName=" + 
+                lastName + ", phone=" + phone + ", address=" + address + ", city=" + city + 
+                ", state=" + state + ", zipCode=" + zipCode + ", email=" + email + ", userName=" + 
+                userName + ", password=" + password + '}';
     }
     
 }

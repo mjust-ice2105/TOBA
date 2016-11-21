@@ -10,15 +10,63 @@
 
         <h1>Titan Online Banking</h1>
         
-        <h2>this is the Account_activity page</h2>
+        <h2>Account Activity</h2>
         
         <c:if test="${!empty sessionScope.user}">
-            <p>Welcome to your account Activity page ${user.firstName} ${user.lastName}</p>
+            <p><a href="Transfer_funds.jsp">Transfer Funds</a></p>
+            <p>Welcome to your account Activity page ${user.firstName} ${user.lastName}</p><br>
+            
+            <h3>Account Information</h3>
+            
+            
+            <h4>-- Checking --</h4>
+            <p>Balance: ${checking.balance}</p>
+            
+            <table>
+                <tr>
+                    <th>Transfer Type</th>
+                    <th>Transfer Amount</th>
+                </tr>
+                
+                <c:forEach var="chkTrans" items="${sessionScope.chkTransList}" >
+                    <tr>
+                        <td><c:out value="${chkTrans.transType}" /></td>
+                        <td><c:out value="${chkTrans.transAmount}" /></td>
+                    </tr>
+                </c:forEach>
+            </table>
+            
+            
+            
+            
+            <br>
+            <h4>-- Savings --</h4>
+            <p>Balance: ${savings.balance}</p>
+            
+            <table>
+                <tr>
+                    <th>Transfer Type</th>
+                    <th>Transfer Amount</th>
+                </tr>
+                
+                <c:forEach var="savTrans" items="${sessionScope.savTransList}" >
+                    <tr>
+                        <td><c:out value="${savTrans.transType}" /></td>
+                        <td><c:out value="${savTrans.transAmount}" /></td>
+                    </tr>
+                </c:forEach>
+            </table>
+            
+            
+            
+            
         </c:if>
         <c:if test="${empty sessionScope.user}">
             <p>You are not logged in</p>
             <p>Go to <a href="Login.jsp">Login</a> page.</p>
         </c:if>
+            
+            
            
         
 <c:import url="include/footer.jsp" />

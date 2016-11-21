@@ -41,5 +41,7 @@
         <label>Email:</label>
         <span>${user.email}</span><br>
         
+        
+        <a href="Login.jsp" >Login HERE</a>
 
         <c:import url="include/footer.jsp" />
