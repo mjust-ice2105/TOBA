@@ -23,6 +23,10 @@
         <servlet-name>PasswordResetServlet</servlet-name>
         <servlet-class>toba.servlet.PasswordResetServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportsServlet</servlet-name>
+        <servlet-class>toba.servlet.ReportsServlet</servlet-class>
+    </servlet>
     
     
     <servlet-mapping>
@@ -40,6 +44,10 @@
     <servlet-mapping>
         <servlet-name>PasswordResetServlet</servlet-name>
         <url-pattern>/passwordresetservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportsServlet</servlet-name>
+        <url-pattern>/reportsservlet</url-pattern>
     </servlet-mapping>
     
     

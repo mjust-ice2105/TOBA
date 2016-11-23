@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/mpjustice/Documents/Files%20from%20PC/BHN_SPC_school_info/FALL_16_SEM/JAVA/Java_Web_Project/TOBA/src/java/toba/servlet/User.java</file>
-            <file>file:/Users/mpjustice/Documents/Files%20from%20PC/BHN_SPC_school_info/FALL_16_SEM/JAVA/Java_Web_Project/TOBA/src/java/toba/servlet/NewCustomerServlet.java</file>
+            <file>file:/Users/mpjustice/Documents/Files%20from%20PC/BHN_SPC_school_info/FALL_16_SEM/JAVA/Java_Web_Project/TOBA/web/New_customer.jsp</file>
+            <file>file:/Users/mpjustice/Documents/Files%20from%20PC/BHN_SPC_school_info/FALL_16_SEM/JAVA/Java_Web_Project/TOBA/web/WEB-INF/web.xml</file>
             <file>file:/Users/mpjustice/Documents/Files%20from%20PC/BHN_SPC_school_info/FALL_16_SEM/JAVA/Java_Web_Project/TOBA/src/java/toba/servlet/LoginServlet.java</file>
-            <file>file:/Users/mpjustice/Documents/Files%20from%20PC/BHN_SPC_school_info/FALL_16_SEM/JAVA/Java_Web_Project/TOBA/src/java/toba/servlet/PasswordResetServlet.java</file>
-            <file>file:/Users/mpjustice/Documents/Files%20from%20PC/BHN_SPC_school_info/FALL_16_SEM/JAVA/Java_Web_Project/TOBA/web/Password_reset.jsp</file>
+            <file>file:/Users/mpjustice/Documents/Files%20from%20PC/BHN_SPC_school_info/FALL_16_SEM/JAVA/Java_Web_Project/TOBA/src/java/toba/javaClass/Account.java</file>
+            <file>file:/Users/mpjustice/Documents/Files%20from%20PC/BHN_SPC_school_info/FALL_16_SEM/JAVA/Java_Web_Project/TOBA/src/java/toba/servlet/TransactionServlet.java</file>
         </group>
     </open-files>
 </project-private>

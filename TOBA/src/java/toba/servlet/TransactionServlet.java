@@ -1,5 +1,9 @@
 package toba.servlet;
 
+import toba.db.AccountDB;
+import toba.javaClass.User;
+import toba.javaClass.Transaction;
+import toba.javaClass.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -52,7 +56,6 @@ public class TransactionServlet extends HttpServlet {
         // Get Checking Account data from DB
         Account chk = AccountDB.selectChkAccount(thisUser.getUserId());
         
-        
         // Check the "from" and "to" accounts user wants to transfer
         // First check if they match
         if(fromAccount.equals(toAccount)) {
@@ -97,9 +100,10 @@ public class TransactionServlet extends HttpServlet {
                         // Perform Subtraction of amount from "case" account
                         // Save to variable
                         // Then check to see if balance is below 0.00
-                        newChkTotal = chk.debit(doubTransferAmount);
-                        if(newChkTotal <= 0.00) {
-                            newChkTotal = chk.credit(doubTransferAmount);
+                        chk.debit(doubTransferAmount);
+                        
+                        if(chk.getBalance() <= 0.00) {
+                            chk.credit(doubTransferAmount);
                             
                             // If not enough money is account to transfer from, tell User
                             response.setContentType("text/html");
@@ -118,8 +122,8 @@ public class TransactionServlet extends HttpServlet {
                             
                             // Set Checking balance once checked for amount to new balance
                             // Perform addition of amount to account opposite of "case" account
-                            chk.setBalance(newChkTotal);
-                            sav.setBalance(sav.credit(doubTransferAmount));
+                            
+                            sav.credit(doubTransferAmount);
                             
                             // List of Transactions initalized
                             List<Transaction> savTransactions = new ArrayList<Transaction>();
@@ -167,9 +171,11 @@ public class TransactionServlet extends HttpServlet {
                         // Perform Subtraction of amount from "case" account
                         // Save to variable
                         // Then check to see if balance is below 0.00
-                        newSavTotal = sav.debit(doubTransferAmount);
-                        if(newSavTotal <= 0.00) {
-                            newSavTotal = sav.credit(doubTransferAmount);
+                        sav.debit(doubTransferAmount);
+                        
+                        if(sav.getBalance() <= 0.00) {
+                            
+                            sav.credit(doubTransferAmount);
                             
                             // If not enough money is account to transfer from, tell User
                             response.setContentType("text/html");
@@ -187,8 +193,8 @@ public class TransactionServlet extends HttpServlet {
                             
                             // Set Savings balance once checked for amount
                             // Perform addition of amount to account opposite of "case" account
-                            sav.setBalance(newSavTotal);
-                            chk.setBalance(chk.credit(doubTransferAmount));
+                            //sav.setBalance(newSavTotal);
+                            chk.credit(doubTransferAmount);
                             
                             // List of Transactions initalized
                             List<Transaction> savTransactions = new ArrayList<Transaction>();
@@ -234,16 +240,16 @@ public class TransactionServlet extends HttpServlet {
                     }
             }
         }
+        
+        // Get List of transactions from the DB
         List<Transaction> savTransList = AccountDB.selectSavingAccountTransactions(sav.getAccountId());
         List<Transaction> chkTransList = AccountDB.selectCheckingAccountTransactions(chk.getAccountId());
-        
-        
-        
         
         // Set account infomation in session.
         session.setAttribute("savings", sav);
         session.setAttribute("checking", chk);
         
+        // Save the Transaction data to the session so it can be displayed.
         session.setAttribute("savTransList", savTransList);
         session.setAttribute("chkTransList", chkTransList);
         

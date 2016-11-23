@@ -1,13 +1,19 @@
 package toba.servlet;
 
+import toba.db.UserDB;
+import toba.db.AccountDB;
+import toba.javaClass.User;
+import toba.javaClass.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import toba.javaClass.Transaction;
 
 /**
  *
@@ -83,16 +89,20 @@ public class LoginServlet extends HttpServlet {
                     // Get Savings Account data from DB
                     Account sav = AccountDB.selectSavAccount(thisUser.getUserId());
                     
-                    //System.out.println(sav);
-                    
                     // Get Checking Account data from DB
                     Account chk = AccountDB.selectChkAccount(thisUser.getUserId());
                     
-                    //System.out.println(chk);
+                    // Get List of transactions from the DB
+                    List<Transaction> savTransList = AccountDB.selectSavingAccountTransactions(sav.getAccountId());
+                    List<Transaction> chkTransList = AccountDB.selectCheckingAccountTransactions(chk.getAccountId());
                     
                     // Save Both CHECKING and SAVINGS account info to session
                     session.setAttribute("savings", sav);
                     session.setAttribute("checking", chk);
+                    
+                    // Save the Transaction data to the session so it can be displayed.
+                    session.setAttribute("savTransList", savTransList);
+                    session.setAttribute("chkTransList", chkTransList);
                     
                     // Send to account_activity if correct UN/PW.
                     url = "/Account_activity.jsp";
