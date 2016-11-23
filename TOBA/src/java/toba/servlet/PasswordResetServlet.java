@@ -1,5 +1,7 @@
 package toba.servlet;
 
+import toba.db.UserDB;
+import toba.javaClass.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

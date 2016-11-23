@@ -1,7 +1,13 @@
 package toba.servlet;
 
+import toba.db.UserDB;
+import toba.db.AccountDB;
+import toba.util.PasswordUtil;
+import toba.javaClass.User;
+import toba.javaClass.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +32,7 @@ public class NewCustomerServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, 
             HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
         
         // Default URL string.
         String url = "/New_customer.jsp";
@@ -79,6 +85,11 @@ public class NewCustomerServlet extends HttpServlet {
             // Create a session and add the user object to that session scope.
             session.setAttribute("user", user);
             
+            // Salt and Hash Password (Assignment 4)
+            // Add new Salt and Hash Password to User Object for inserting to DB
+            //String saltHashPassword = PasswordUtil.hashAndSaltPassword("welcome1");
+            //user.setPassword(saltHashPassword);
+            
             // Add User to DB
             UserDB.insert(user);
             
@@ -113,6 +124,8 @@ public class NewCustomerServlet extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(NewCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(NewCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -123,6 +136,8 @@ public class NewCustomerServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(NewCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(NewCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
