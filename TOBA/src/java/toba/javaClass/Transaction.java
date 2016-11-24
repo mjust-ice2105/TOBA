@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -30,6 +29,7 @@ public class Transaction implements Serializable {
     private double transAmount;
     
     
+    @ManyToOne (cascade=CascadeType.ALL)
     private Account account;
     
     
@@ -108,8 +108,6 @@ public class Transaction implements Serializable {
     
     
     // Mapping to Account class (many transactions-->one Account)
-    @ManyToOne (cascade=CascadeType.ALL)
-    @JoinColumn(name = "AccountID")
     public Account getAccount() {
         return account;
     }
