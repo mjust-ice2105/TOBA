@@ -2,14 +2,12 @@ package toba.javaClass;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletResponse;
+import javax.persistence.OneToOne;
 
 
 /**
@@ -30,9 +28,9 @@ public class Account implements Serializable {
     private long AccountId;
     private double balance;
     private String accountType;
+    @OneToOne
     private User accountOwner;
-    
-    
+    @OneToMany
     private List<Transaction> transactions;
     
     
@@ -96,8 +94,7 @@ public class Account implements Serializable {
     
     
     
-    // Mapping Transaction class (One Account-->Many transactions)
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    // Used for mapping Transaction class
     public List<Transaction> getTransactions() {
         return transactions;
     }
