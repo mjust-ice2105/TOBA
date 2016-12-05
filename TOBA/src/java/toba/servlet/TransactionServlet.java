@@ -38,8 +38,7 @@ public class TransactionServlet extends HttpServlet {
         String transferAmount = request.getParameter("transAmount");
         String fromAccount = request.getParameter("from");
         String toAccount = request.getParameter("to");
-        double newChkTotal;
-        double newSavTotal;
+        
         
         // Convert String Transfer amount to double
         double doubTransferAmount = Double.parseDouble(transferAmount);

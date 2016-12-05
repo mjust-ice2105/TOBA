@@ -13,7 +13,13 @@
         <h2>Account Activity</h2>
         
         <c:if test="${!empty sessionScope.user}">
-            <p><a href="Transfer_funds.jsp">Transfer Funds</a></p>
+            
+            <p>
+                <a href="Transfer_funds.jsp">Transfer Funds</a>
+                &nbsp;
+                <a href="admin/reports.jsp">Administration</a>
+            </p>
+            
             <p>Welcome to your account Activity page ${user.firstName} ${user.lastName}</p><br>
             
             <h3>Account Information</h3>
