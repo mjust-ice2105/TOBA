@@ -4,9 +4,28 @@
 <Resource 
     name="TOBA"
     auth="Container"
+    maxActive="100"
+    maxIdle="30"
+    maxWait="10000"
     driverClassName="com.mysql.jdbc.Driver"
-    url="jdbc:mysql://localhost:3306/TOBA"
+    url="jdbc:mysql://localhost:3306/TOBA?autoReconnect=true"
+    logAbandoned="true"
+    removeAbandoned="true"
+    removeAbandonedTimeout="60"
+    type="javax.sql.DataSource"
     username="root"
     password="JavaApp1" />
+
+<Realm 
+    className="org.apache.catalina.realm.DataSourceRealm" 
+    debug="99"
+    dataSourceName="TOBA"
+    localDataSource="true"
+    userTable="UserPass"
+    userNameCol="Username"
+    userCredCol="Password"
+    userRoleTable="UserRole"
+    roleNameCol="Rolename" />
+
 
 </Context>

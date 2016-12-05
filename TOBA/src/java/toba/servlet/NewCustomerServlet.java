@@ -9,10 +9,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -73,22 +77,29 @@ public class NewCustomerServlet extends HttpServlet {
             // Create HTTP Session
             HttpSession session = request.getSession();
             
-            // Create Username and Temp Password for new user
-            // Pass to User bean as well 
+            // Create Username, TEMP password, and get salt
+            // Pass ALL data to User bean
             String userName = lastName + zipCode;
             String password = "welcome1";
-            
-            // Create User bean and pass the attributes.
-            User user = new User(firstName, lastName, phone, address, city, state, 
-            zipCode, email, userName, password);
-            
-            // Create a session and add the user object to that session scope.
-            session.setAttribute("user", user);
+            String salt = PasswordUtil.getSalt();
             
             // Salt and Hash Password (Assignment 4)
             // Add new Salt and Hash Password to User Object for inserting to DB
-            //String saltHashPassword = PasswordUtil.hashAndSaltPassword("welcome1");
-            //user.setPassword(saltHashPassword);
+            String saltHashPassword = PasswordUtil.hashPassword(password + salt);
+            
+            // Create registration date that the user was added (for reports)
+            // Add to User Object for inserting to DB
+            DateFormat df = new SimpleDateFormat("MM/yyyy");
+            Date Date = new Date();
+            String regDate = df.format(Date);
+            
+            // Create User bean and pass the attributes.
+            User user = new User(firstName, lastName, phone, address, city, state, 
+            zipCode, email, userName, saltHashPassword, salt, regDate);
+            
+            // Create a session and add the user object to that session scope.
+            session.setAttribute("user", user);
+            session.setAttribute("initPassword", password);
             
             // Add User to DB
             UserDB.insert(user);
@@ -104,6 +115,12 @@ public class NewCustomerServlet extends HttpServlet {
             // Insert the Account information to the DB.
             AccountDB.insert(userSavAcct);
             AccountDB.insert(userChkAcct);
+            
+            // Add cookies for Request Filtering.
+            Cookie c = new Cookie("emailCookie", user.getEmail());
+            c.setMaxAge(60*60*24*365);
+            c.setPath("/");
+            response.addCookie(c);
             
             // Set URL to success page if all variables are filled out.
             url = "/Success.jsp";

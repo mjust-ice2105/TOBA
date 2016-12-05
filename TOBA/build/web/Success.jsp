@@ -18,7 +18,7 @@
         <span>${user.userName}</span><br>
         
         <label>Password:</label>
-        <span>${user.password}</span><br>
+        <span>${initPassword}</span><br>
         
         <label>First Name:</label>
         <span>${user.firstName}</span><br>

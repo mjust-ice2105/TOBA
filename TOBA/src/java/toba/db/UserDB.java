@@ -1,5 +1,6 @@
 package toba.db;
 
+import java.util.List;
 import toba.util.DBUtil;
 import toba.javaClass.User;
 import javax.persistence.EntityManager;
@@ -107,6 +108,33 @@ public class UserDB {
         
     }
     
+    
+    //
+    public static List<User> selectUserMonthReport(String currMonth) {
+        
+        //
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String query = "SELECT u FROM User u " +
+                "WHERE u.regDate = :month";
+        
+        TypedQuery<User> q = em.createQuery(query, User.class);
+        q.setParameter("month", currMonth);
+        
+        List<User> userReport;
+        
+        try {
+            userReport = q.getResultList();
+            
+            if(userReport == null || userReport.isEmpty())
+                userReport = null;
+        }
+        finally {
+            em.close();
+        }
+        
+        return userReport;
+        
+    }
     
     
     
